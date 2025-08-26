@@ -8,11 +8,12 @@ const Dashboard = () => {
   const [repoPage, setRepoPage] = useState(1);
   const [userTotalPages, setUserTotalPages] = useState(1);
   const [repoTotalPages, setRepoTotalPages] = useState(1);
+  const API_URL = import.meta.env.VITE_API_URL; 
 
   // Fetch users with pagination
   const fetchUsers = async (page = 1) => {
     const res = await fetch(
-      `http://localhost:4000/api/dashboard?type=users&page=${page}`
+      `${API_URL}/dashboard?type=users&page=${page}`
     );
     const json = await res.json();
     setUsers(json.results);
@@ -22,7 +23,7 @@ const Dashboard = () => {
   // Fetch repos with pagination
   const fetchRepos = async (page = 1) => {
     const res = await fetch(
-      `http://localhost:4000/api/dashboard?type=repos&page=${page}`
+      `${API_URL}/dashboard?type=repos&page=${page}`
     );
     const json = await res.json();
     setRepos(json.results);

@@ -5,7 +5,7 @@ import { RepositorySearch } from "../components/RepositorySearch";
 import { UserSearch } from "../components/userSearch"; 
 import { ErrorMessage } from "../components/ErrorMessage"; 
 
-const API_URL = "http://localhost:4000/api";
+  const API_URL = import.meta.env.VITE_API_URL; 
 
 const githubAPI = {
   fetchUser: async (username) => {
@@ -28,7 +28,10 @@ const githubAPI = {
 
   searchRepos: async (query) => {
     const response = await fetch(`${API_URL}/search?q=${query}`);
+    console.log(response);
+    
     if (!response.ok) {
+
       const error = await response.json();
       throw new Error(error.error || "Error searching repos");
     }
